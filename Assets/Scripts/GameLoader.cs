@@ -20,12 +20,14 @@ public class GameLoader : MonoBehaviour
     {
         if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
         {
-            SceneManager.LoadScene("Scene_2");
-
-            foreach (var go in asyncOperationHandle.Result)
+            var sceneLoad = SceneManager.LoadSceneAsync("Scene_2");
+            sceneLoad.completed += operation =>
             {
-                Instantiate(go, Vector3.zero, Quaternion.identity);
-            }
+                foreach (var go in asyncOperationHandle.Result)
+                {
+                    Instantiate(go, Vector3.zero, Quaternion.identity);
+                }
+            };
         }
         else
         {
@@ -35,7 +37,7 @@ public class GameLoader : MonoBehaviour
 
     public void LoadAssets()
     {
-        loadHandle = Addressables.LoadAssetsAsync<GameObject>(keys, addressable => {}, Addressables.MergeMode.Union, false);
+        loadHandle = Addressables.LoadAssetsAsync<GameObject>(keys, addressable => {}, Addressables.MergeMode.Union, true);
         loadHandle.Completed += HandleOnCompleted;
     }
 }

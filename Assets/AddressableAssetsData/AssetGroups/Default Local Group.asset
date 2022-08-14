@@ -15,32 +15,8 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 2253e73efc0f3154dbee53bbd87d0384
-  m_SerializeEntries:
-  - m_GUID: f0e212f1c67dc1c4790af5c4fc69666d
-    m_Address: Assets/Prefabs/GoldCoin.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scene 2
-  - m_GUID: 423ea5a73d749214aaafe4a362370397
-    m_Address: Assets/Prefabs/Environment.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scene 2
-  - m_GUID: 4144ef9fe7b4bf147999d1424cd55c01
-    m_Address: Assets/Prefabs/Player.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scene 2
-  - m_GUID: 3ebaa535e9c8c934abf8007a658208d2
-    m_Address: Assets/Prefabs/UI.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scene 2
-  - m_GUID: d67e181c7b206c94792ce3f2c44fa914
-    m_Address: Assets/Prefabs
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_GUID: c0dafc43542b4274ea546030c5f6f83d
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0346ca5b3facf2b43948c31f987b9e98, type: 2}
   m_SchemaSet:
