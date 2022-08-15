@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsCounter;
     [SerializeField] private Button menuButton;
     [SerializeField] private FadeUIAnimation loadingScreen;
-    
+
     private int _coinsPicked;
 
     private void Start()

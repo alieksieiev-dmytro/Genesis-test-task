@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -12,23 +13,37 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
+        if (ES3.KeyExists(UserDataKeys.SFX_SETTING))
+        {
+            isSFXEnabled = ES3.Load<bool>(UserDataKeys.SFX_SETTING);
+        }
+
+        if (ES3.KeyExists(UserDataKeys.MUSIC_SETTING))
+        {
+            isMusicEnabled = ES3.Load<bool>(UserDataKeys.MUSIC_SETTING);
+        }
     }
 
     #endregion
     
     [SerializeField] private List<AudioClip> audioClips;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private bool isEnabledSFX;
-       
+    [SerializeField] private bool isSFXEnabled;
+    [SerializeField] private bool isMusicEnabled;
     
+
     private void Start()
     {
-        StartCoroutine(LoopBackgroundMusic());
+        if (isMusicEnabled)
+        {
+            StartCoroutine(LoopBackgroundMusic());
+        }
     }
 
     public void PlaySound(AudioClip sound)
     {
-        if (isEnabledSFX)
+        if (isSFXEnabled)
         {
             audioSource.PlayOneShot(sound);
         }
@@ -36,6 +51,8 @@ public class SoundManager : MonoBehaviour
 
     public void EnableMusic(bool toEnable)
     {
+        isMusicEnabled = toEnable;
+        
         if (toEnable)
         {
             StartCoroutine(LoopBackgroundMusic());
@@ -43,12 +60,13 @@ public class SoundManager : MonoBehaviour
         else
         {
             StopAllCoroutines();
+            audioSource.Stop();
         }
     }
 
     public void EnableSFX(bool toEnable)
     {
-        isEnabledSFX = toEnable;
+        isSFXEnabled = toEnable;
     }
     
     private IEnumerator LoopBackgroundMusic()
@@ -61,5 +79,21 @@ public class SoundManager : MonoBehaviour
         }
 
         StartCoroutine(LoopBackgroundMusic());
+    }
+
+    private void SaveSettings()
+    {
+        ES3.Save<bool>(UserDataKeys.SFX_SETTING, isSFXEnabled);
+        ES3.Save<bool>(UserDataKeys.MUSIC_SETTING, isMusicEnabled);
+    }
+    
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        SaveSettings();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveSettings();
     }
 }
