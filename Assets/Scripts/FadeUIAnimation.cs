@@ -17,7 +17,14 @@ public class FadeUIAnimation : MonoBehaviour
 
     public void FadeOut()
     {
+        gameObject.SetActive(true);
         StartCoroutine(FadeOut(frames));
+    }
+    
+    public void FadeIn()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(FadeIn(frames));
     }
     
     private IEnumerator FadeOut(float framesAnimation)
@@ -25,6 +32,15 @@ public class FadeUIAnimation : MonoBehaviour
         while (m_CanvasGroup.alpha != 0)
         {
             m_CanvasGroup.alpha -= 1f / framesAnimation;
+            yield return null;
+        }
+    }
+    
+    private IEnumerator FadeIn(float framesAnimation)
+    {
+        while (m_CanvasGroup.alpha != 1f)
+        {
+            m_CanvasGroup.alpha += 1f / framesAnimation;
             yield return null;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -39,5 +40,16 @@ public class GameLoader : MonoBehaviour
     {
         loadHandle = Addressables.LoadAssetsAsync<GameObject>(keys, addressable => {}, Addressables.MergeMode.Union, true);
         loadHandle.Completed += HandleOnCompleted;
+    }
+
+    public void LoadLevel(float delay)
+    {
+        StartCoroutine(LoadLevel_Coroutine(delay));
+    }
+
+    private IEnumerator LoadLevel_Coroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LoadAssets();
     }
 }
