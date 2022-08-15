@@ -1,9 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    #region Singleton
+
+    public static SoundManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+    
     [SerializeField] private List<AudioClip> audioClips;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool isEnabledSFX;

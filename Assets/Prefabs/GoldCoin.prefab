@@ -158,3 +158,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.5
   destructionDelay: 5
+  pickUpSound: {fileID: 8300000, guid: 28ea8f2e445024d93884e4bc4ba1e834, type: 3}

@@ -7,6 +7,8 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float destructionDelay;
+    [SerializeField] public AudioClip pickUpSound;
+    
     
     private bool m_IsGrounded;
     

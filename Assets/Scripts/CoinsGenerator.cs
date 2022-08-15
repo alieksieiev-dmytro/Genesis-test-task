@@ -26,6 +26,10 @@ public class CoinsGenerator : MonoBehaviour
         var go = Instantiate(coinPrefab, GenerateCoords(), coinPrefab.transform.rotation);
         go.OnPickingUp += SpawnNewCoin;
         go.OnPickingUp += UIManager.Instance.IncrementCoinCounter;
+        go.OnPickingUp += () =>
+        {
+            SoundManager.Instance.PlaySound(go.pickUpSound);
+        };
         go.OnDestroy += SpawnNewCoin;
     }
 }
