@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameLoader : MonoBehaviour
 {
+    [SerializeField] private GameObject errorMessage;
+    
     public List<string> keys = new List<string>();
 
     private AsyncOperationHandle<IList<GameObject>> loadHandle;
@@ -32,7 +34,7 @@ public class GameLoader : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"AssetReference {asyncOperationHandle.DebugName} failed to load.");
+            errorMessage.SetActive(true);
         }
     }
 
